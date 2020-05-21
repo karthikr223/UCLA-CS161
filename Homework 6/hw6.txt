@@ -1,0 +1,83 @@
+1. a. {x/A, y/A, z/B}
+
+b. There is no unifier.
+
+c. {x/B, y/A}
+
+d.{x/John, y/John}
+
+e. There is no unifier.
+
+2. a.
+A x (Food(x) => Likes(John,x))
+Food(Apples)
+Food(Chicken)
+A x E y ((Eats(y,x) & ~Kills(x,y)) => Food(x))
+A y E x ((Kills(x,y) => ~Alive(y))
+Eats(Bill, Peanuts) & Alive(Bill)
+A x (Eats(Bill, x) => Eats(Sue,x))
+
+b. 
+1. ~Food(x) | Likes(John, x)
+2. Food(Apples)
+3. Food(Chicken)
+4. ~Eats(F(x),x) | Kills(x,F(x)) | Food(x)
+5. ~Kills(F(y),y) | ~Alive(y)
+6. Eats(Bill, Peanuts)
+7. Alive(Bill)
+8. ~Eats(Bill,x) | Eats(Sue,x)
+
+c. Above is the knowledge base. We want to prove Likes(John, Peanuts). To do so, we can show ~Likes(John, Peanuts) is unsatisfiable.
+
+9. ~Likes(John, Peanuts)
+10. ~Food(Peanuts) (1 and 9) {x/Peanuts}
+11. ~Eats(F(Peanuts), Peanuts) | Kills(Peanuts, F(Peanuts)) (4 and 10) {x/Peanuts}
+12. ~Eats(F(Peanuts), Peanuts) | ~Alive(F(Peanuts)) (5 and 11) {y/Peanuts}
+13. ~Alive(Bill) (6 and 12) {F(Peanuts)/Bill}
+14. Empty clause (7 and 13)
+
+~Likes(John, Peanuts) is unsatisifiable, therefore we can conclude that John likes peanuts.
+
+d. Using the above knowledge base, we must unify Eats(Sue, x).
+
+Eats(Sue, Peanuts) (6 and 8) {x/Peanuts}
+
+Sue eats peanuts.
+
+e. New statements:
+E y A x (~Eats(y,x) => Die(y))
+Die(x) => ~Alive(x)
+Alive(Bill)
+
+New knowledge base:
+
+1. ~Food(x) | Likes(John, x)
+2. Food(Apples)
+3. Food(Chicken)
+4. ~Eats(F(x),x) | Kills(x,F(x)) | Food(x)
+5. ~Kills(F(y),y) | ~Alive(y)
+6. Eats(y, G(y)) | Die(y) 
+7. ~Die(x) | ~Alive(x)
+8. Alive(Bill)
+9. ~Eats(Bill,x) | Eats(Sue,x)
+
+10. Die(Bill) | Eats(Sue, G(Bill)) (6 and 9) {y/Bill, x/G(y)}
+11. ~Alive(Bill) | Eats(Sue, G(Bill)) (7 and 10) {x/Bill}
+12. Eats(Sue, G(Bill)) (8 and 11)
+
+We can draw no further conclusions about what Sue eats.
+
+3(1). The instance with 3 colors is not satisfiable.
+
+3(2). The instance with 4 colors is satisfiable.
+
+3(3). Let the colors be red, green, blue and yellow.
+1 - red
+2 - green
+3 - yellow
+4 - red
+5 - green
+6 - yellow
+7 - blue
+
+3(4). The minimum number of colors to properly color the graph given in graph2.txt is 8.
