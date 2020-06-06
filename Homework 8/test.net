@@ -1,0 +1,32 @@
+net
+{
+	rcenginegenerator1317510038576835557L = "edu.ucla.belief.inference.RCSettings@fe0611";
+}
+
+node D
+{
+	states = ("Yes" "No" );
+	position = (142 -95);
+	ismapvariable = "false";
+	label = "Disease";
+	diagnosistype = "AUXILIARY";
+	excludepolicy = "include whole CPT";
+}
+node T
+{
+	states = ("Positive" "Negative" );
+	position = (254 -234);
+	ismapvariable = "false";
+	label = "Test";
+	diagnosistype = "AUXILIARY";
+	excludepolicy = "include whole CPT";
+}
+potential ( D | )
+{
+	data = (	0.001	0.999	);
+}
+potential ( T | D )
+{
+	data = ((	0.95	0.05	)
+		(	0.02	0.98	));
+}
